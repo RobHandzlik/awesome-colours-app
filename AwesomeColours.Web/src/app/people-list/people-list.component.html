@@ -1,0 +1,34 @@
+<h1 id="tableLabel">People</h1>
+
+<p *ngIf="!personDetails"><em>Loading...</em></p>
+
+<table class='table table-striped table-hover table-sm' aria-labelledby="tableLabel" *ngIf="personDetails">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Authorised</th>
+      <th>Valid</th>
+      <th>Enabled</th>
+      <th>Palindrome</th>
+      <th>Favorite Colours </th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let personDetail of personDetails">
+      <td>{{ personDetail.firstName }}</td>
+      <td>{{ personDetail.lastName }}</td>
+      <td><input type="checkbox" [checked]="personDetail.isAuthorised" [disabled]="true"></td>
+      <td><input type="checkbox" [checked]="personDetail.isValid" [disabled]="true"></td>
+      <td><input type="checkbox" [checked]="personDetail.isEnabled" [disabled]="true"></td>
+      <td><input type="checkbox" [checked]="personDetail.isPalindrome" [disabled]="true"></td>
+      <td>
+        <span *ngFor="let colour of personDetail.colours"> {{colour.name}} </span>
+      </td>
+      <td>
+        <button class="btn btn-sm btn-primary" routerLink="/people/{{personDetail.personId}}">Amend Details</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

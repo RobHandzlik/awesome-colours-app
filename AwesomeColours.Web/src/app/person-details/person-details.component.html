@@ -1,0 +1,62 @@
+<h1 id="tableLabel">Person Details</h1>
+
+<p *ngIf="loading"><em>Loading...</em></p>
+
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+  <strong>{{errorMessage}}</strong>
+</div>
+<div class="alert alert-success" role="alert" *ngIf="savedMessage">
+  <strong>{{savedMessage}}</strong>
+</div>
+
+<div *ngIf="!loading">
+    <div class="form-group row">
+      <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="personDetail.firstName" name="firstName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+      <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="personDetail.lastName" name="lastName">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="isEnabled" class="col-sm-2 col-form-label">Enabled</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="form-control checkbox-sm" [(ngModel)]="personDetail.isEnabled" name="isEnabled">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="isAuthorised" class="col-sm-2 col-form-label">Authorised</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="form-control checkbox-sm" [(ngModel)]="personDetail.isAuthorised" name="isAuthorised">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="isValid" class="col-sm-2 col-form-label">Valid</label>
+      <div class="col-sm-1">
+        <input type="checkbox" class="form-control checkbox-sm" [(ngModel)]="personDetail.isValid" name="isValid">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="firstName" class="col-sm-2 col-form-label">Favorite Colours</label>
+      <div class="col-sm-4">
+      </div>
+    </div>
+    <div *ngFor="let colour of personDetail.colours" class="form-group row">
+      <div class="offset-sm-2 col-sm-1">
+        <input type="checkbox" class="form-control checkbox-sm" [(ngModel)]="colour.isSelected" name="{{colour.colourId}}">
+      </div>
+      <label for="isValid" class="">{{colour.name}}</label>
+    </div>
+    <div class="form-group row">
+      <div class="offset-2 col-3">
+        <button type="button" class="btn btn-outline-secondary btn-block" routerLink="/people">Cancel</button>
+      </div>
+      <div class="col-3">
+        <button type="button" class="btn btn-primary btn-block" (click)="saveChanges()">Save</button>
+      </div>
+    </div>
+</div>

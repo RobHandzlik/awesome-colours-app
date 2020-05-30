@@ -1,0 +1,24 @@
+<h1 id="tableLabel">Colours</h1>
+
+<p *ngIf="!colours"><em>Loading...</em></p>
+
+<div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+  <strong>{{errorMessage}}</strong>
+</div>
+
+<table class='table table-striped table-hover table-sm' aria-labelledby="tableLabel" *ngIf="colours">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Enabled</th>
+      <th>Favorited</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let colour of colours">
+      <td>{{ colour.name }}</td>
+      <td><input type="checkbox" [checked]="colour.isEnabled" [disabled]="true"></td>
+      <td>{{ colour.favorited }}</td>
+    </tr>
+  </tbody>
+</table>
